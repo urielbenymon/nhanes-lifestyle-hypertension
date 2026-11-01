@@ -2,7 +2,7 @@
 
 Code for **"Does Lifestyle Information Improve Hypertension Prediction? A Leakage-Controlled Evaluation on NHANES"** (Uriel Benymon, ML4H 2026 Findings Track).
 
-The study asks whether a block of routinely available lifestyle information (physical activity, alcohol use, smoking, and sleep) improves machine-learning prediction of hypertension beyond demographic, socioeconomic, and anthropometric predictors. It uses the NHANES 2017–March 2020 pre-pandemic cycle (adults 18+, N = 8,024) and five model families: Logistic Regression, Random Forest, Gradient Boosting, Bagged Decision Trees, and XGBoost.
+This study asks whether a block of routinely available lifestyle information (physical activity, alcohol use, smoking, and sleep) improves machine-learning prediction of hypertension beyond demographic, socioeconomic, and anthropometric predictors. It uses the NHANES 2017–March 2020 pre-pandemic cycle (adults 18+, N = 8,024) and five model families: Logistic Regression, Random Forest, Gradient Boosting, Bagged Decision Trees, and XGBoost.
 
 **Design**
 
