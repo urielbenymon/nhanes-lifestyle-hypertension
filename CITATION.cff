@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper below."
+title: "Does Lifestyle Information Improve Hypertension Prediction? A Leakage-Controlled Evaluation on NHANES (code)"
+authors:
+  - family-names: Benymon
+    given-names: Uriel
+    affiliation: Columbia University
+    orcid: "https://orcid.org/0009-0008-0252-6934"
+repository-code: "https://github.com/urielbenymon/nhanes-lifestyle-hypertension"
+license: MIT
+preferred-citation:
+  type: conference-paper
+  title: "Does Lifestyle Information Improve Hypertension Prediction? A Leakage-Controlled Evaluation on NHANES"
+  authors:
+    - family-names: Benymon
+      given-names: Uriel
+      affiliation: Columbia University
+      orcid: "https://orcid.org/0009-0008-0252-6934"
+  conference:
+    name: "Machine Learning for Health (ML4H) 2026, Findings Track"
+  year: 2026

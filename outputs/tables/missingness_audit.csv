@@ -1,0 +1,46 @@
+variable,category,label,n_observed,n_missing,pct_missing,min,max,n_unique
+BPQ020,phenotype,Ever told had high blood pressure,8953,12,0.1,1.0,2.0,2
+BPQ030,phenotype,Told had high blood pressure 2+ times,3303,5662,63.2,1.0,2.0,2
+BPQ040A,phenotype,Taking prescription for hypertension,3315,5650,63.0,1.0,2.0,2
+BPQ050A,phenotype,Now taking prescribed medicine for high blood pressure,3032,5933,66.2,1.0,2.0,2
+PAQ605,lifestyle,Vigorous work activity (Y/N),8958,7,0.1,1.0,2.0,2
+PAQ610,lifestyle,Number of days vigorous work,2246,6719,74.9,1.0,7.0,7
+PAD615,lifestyle,Minutes vigorous-intensity work (per typical day),2227,6738,75.2,10.0,840.0,27
+PAQ620,lifestyle,Moderate work activity (Y/N),8958,7,0.1,1.0,2.0,2
+PAQ625,lifestyle,Number of days moderate work,3873,5092,56.8,1.0,7.0,7
+PAD630,lifestyle,Minutes moderate-intensity work (per typical day),3848,5117,57.1,10.0,900.0,33
+PAQ635,lifestyle,Walk or bicycle for transportation (Y/N),8963,2,0.0,1.0,2.0,2
+PAQ640,lifestyle,Number of days walk or bicycle,2087,6878,76.7,1.0,7.0,7
+PAD645,lifestyle,Minutes walk/bicycle for transportation (per typical day),2076,6889,76.8,10.0,840.0,37
+PAQ650,lifestyle,Vigorous recreational activities (Y/N),8965,0,0.0,1.0,2.0,2
+PAQ655,lifestyle,Days vigorous recreational activities,2235,6730,75.1,1.0,7.0,7
+PAD660,lifestyle,Minutes vigorous recreational activities (per typical day),2229,6736,75.1,10.0,480.0,31
+PAQ665,lifestyle,Moderate recreational activities (Y/N),8963,2,0.0,1.0,2.0,2
+PAQ670,lifestyle,Days moderate recreational activities,3630,5335,59.5,1.0,7.0,7
+PAD675,lifestyle,Minutes moderate recreational activities (per typical day),3621,5344,59.6,10.0,600.0,35
+PAD680,lifestyle,Minutes sedentary activity (per typical day),8889,76,0.8,0.0,1320.0,61
+RIAGENDR,demographic,Gender,8965,0,0.0,1.0,2.0,2
+RIDAGEYR,demographic,Age in years at screening,8965,0,0.0,18.0,80.0,63
+RIDRETH3,demographic,Race/Hispanic origin (with Non-Hispanic Asian category),8965,0,0.0,1.0,7.0,6
+DMDEDUC2,demographic,Education level (Adults 20+),8531,434,4.8,1.0,5.0,5
+INDFMPIR,demographic,Ratio of family income to poverty,7705,1260,14.1,0.0,5.0,466
+BMXWT,anthropometric,Weight (kg),8811,154,1.7,32.6,254.3,1135
+BMXHT,anthropometric,Standing height (cm),8804,161,1.8,131.1,199.6,531
+BMXBMI,anthropometric,Body Mass Index (kg/m^2),8790,175,2.0,14.2,92.3,452
+BMXWAIST,anthropometric,Waist circumference (cm),8449,516,5.8,56.4,187.5,877
+BPXOSY1,phenotype,Systolic - 1st oscillometric reading,8024,941,10.5,66.0,225.0,138
+BPXODI1,phenotype,Diastolic - 1st oscillometric reading,8024,941,10.5,36.0,151.0,95
+BPXOSY2,phenotype,Systolic - 2nd oscillometric reading,8013,952,10.6,54.0,222.0,138
+BPXODI2,phenotype,Diastolic - 2nd oscillometric reading,8013,952,10.6,31.0,146.0,92
+BPXOSY3,phenotype,Systolic - 3rd oscillometric reading,7993,972,10.8,60.0,220.0,136
+BPXODI3,phenotype,Diastolic - 3rd oscillometric reading,7993,972,10.8,36.0,145.0,90
+ALQ111,lifestyle,Ever had a drink of any kind of alcohol,8370,595,6.6,1.0,2.0,2
+ALQ121,lifestyle,Past 12 months: how often drink alcohol,7499,1466,16.4,0.0,10.0,11
+ALQ130,lifestyle,Avg # alcoholic drinks/day - past 12 months,5853,3112,34.7,1.0,15.0,14
+SLD012,lifestyle,Sleep hours - weekdays/workdays,8886,79,0.9,2.0,14.0,24
+SLD013,lifestyle,Sleep hours - weekends,8881,84,0.9,2.0,14.0,24
+SLQ050,lifestyle,Ever told doctor had trouble sleeping,8958,7,0.1,1.0,2.0,2
+SLQ120,lifestyle,How often feel overly sleepy during day,8948,17,0.2,0.0,4.0,5
+SMQ020,lifestyle,Smoked at least 100 cigarettes in life,8961,4,0.0,1.0,2.0,2
+SMQ040,lifestyle,Do you now smoke cigarettes (every day/some days/not at all),3596,5369,59.9,1.0,3.0,3
+SMDANY,lifestyle,Used any tobacco product in the last 5 days,8371,594,6.6,1.0,2.0,2

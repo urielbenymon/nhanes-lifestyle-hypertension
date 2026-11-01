@@ -1,0 +1,10 @@
+# Exact versions used for the results reported in the paper (Python 3.14).
+# Newer versions will likely work, but exact numbers may differ slightly.
+pandas==3.0.3
+numpy==2.4.6
+scipy==1.18.1
+scikit-learn==1.9.0
+imbalanced-learn==0.14.2
+xgboost==3.4.1
+shap==0.52.0
+matplotlib==3.11.1
