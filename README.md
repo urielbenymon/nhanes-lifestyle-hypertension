@@ -76,11 +76,20 @@ python src/shap_refit_controls.py --part nosmote               # SHAP without SM
 
 **Note on repeated splits.** Hyperparameters were tuned on the original (seed-42) development set. For other seeds, part of each new test set contributed to that tuning, so these results show split sensitivity conditional on the original tuning. They are not independent validation. The `trainseeds` analysis keeps the original split fixed and is the cleaner check.
 
+### 3. Paper tables
+
+```bash
+python src/cohort_table.py           # cohort characteristics (Appendix A)
+python src/make_appendix_tables.py   # formats appendix tables from outputs/tables/ into paper/appendix_tables/
+```
+
+`outputs/untuned_primary/` holds the development-CV and held-out results from the initial run with library-default hyperparameters, before tuning. The paper cites them when describing how the test set was used.
+
 ### Approximate runtime
 
 | Step | Time |
 |---|---|
-| Hyperparameter search (all models, both arms) | about 19 min (Table 12 of the paper) |
+| Hyperparameter search (all models, both arms) | about 19 min |
 | SHAP | about 20–30 min per run; most of it is the Bagged Decision Tree permutation explainer |
 | Each refit in `robustness_refits.py` | about 20 s per seed |
 | All other steps | seconds to a few minutes |
@@ -117,8 +126,10 @@ docs/                     variable selection record
 | Untreated-adult subgroup | `robustness_refits.py --part untreated` | `untreated_results.csv` |
 | Training-seed and repeated-split variability | `robustness_refits.py` | `train_seed_*.csv`, `repeated_splits_*.csv` |
 | Shuffled-lifestyle and no-SMOTE SHAP controls | `shap_refit_controls.py` | `shap_shuffled_control_summary.csv`, `*_no_smote.csv` |
+| Cohort characteristics | `cohort_table.py` | `cohort_characteristics.csv` |
+| Library-default (untuned) results cited for test-set history | initial untuned run of `train_pipeline.py` / `evaluate.py` | `outputs/untuned_primary/` (`cv_results.csv`, `test_metrics.csv`, `paired_comparison.csv`) |
 
-All figures are written to `outputs/figures/` by `make_figures.py`, `calibration_analysis.py`, and `feature_redundancy.py`.
+All figures are written to `outputs/figures/` by `make_figures.py`, `calibration_analysis.py`, and `feature_redundancy.py`. Appendix LaTeX tables are written to `paper/appendix_tables/` by `cohort_table.py` and `make_appendix_tables.py` (not tracked).
 
 ---
 
