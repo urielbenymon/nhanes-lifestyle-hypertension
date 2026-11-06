@@ -141,7 +141,17 @@ All figures are written to `outputs/figures/` by `make_figures.py`, `calibration
 
 ## Citation
 
-If you use this code, please cite the paper (see `CITATION.cff`).
+If you use this code, please cite the paper (see `CITATION.cff`):
+
+```bibtex
+@inproceedings{benymon2026does,
+  title={Does Lifestyle Information Improve Hypertension Prediction? A Leakage-Controlled Evaluation on {NHANES}},
+  author={Uriel Benymon},
+  booktitle={Machine Learning for Health 2026},
+  year={2026},
+  url={https://openreview.net/forum?id=BW9QSU8cTo}
+}
+```
 
 ## License
 
