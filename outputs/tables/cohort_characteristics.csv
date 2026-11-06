@@ -1,0 +1,38 @@
+section,characteristic,Overall,B: yes,B: no,A: yes,A: no,Missing
+Demographic/SES,"Age, years, mean (SD)",49.4 (18.3),57.7 (15.4),39.8 (16.6),56.2 (16.0),44.3 (18.2),0
+Demographic/SES,"Female, n (%)","4,049 (50.5)","2,042 (47.4)","2,007 (54.1)","1,594 (46.8)","2,455 (53.2)",0
+Demographic/SES,"Race/ethnicity, n (%)",,,,,,0
+Demographic/SES,  Mexican American,899 (11.2),375 (8.7),524 (14.1),309 (9.1),590 (12.8),
+Demographic/SES,  Other Hispanic,810 (10.1),394 (9.1),416 (11.2),311 (9.1),499 (10.8),
+Demographic/SES,  Non-Hispanic White,"2,842 (35.4)","1,540 (35.7)","1,302 (35.1)","1,166 (34.2)","1,676 (36.3)",
+Demographic/SES,  Non-Hispanic Black,"2,147 (26.8)","1,362 (31.6)",785 (21.1),"1,103 (32.4)","1,044 (22.6)",
+Demographic/SES,  Non-Hispanic Asian,928 (11.6),436 (10.1),492 (13.3),353 (10.4),575 (12.5),
+Demographic/SES,  Other/multiracial,398 (5.0),204 (4.7),194 (5.2),166 (4.9),232 (5.0),
+Demographic/SES,"Education, n (%)",,,,,,381
+Demographic/SES,  Less than 9th grade,518 (6.8),324 (7.6),194 (5.8),263 (7.8),255 (6.0),
+Demographic/SES,  9th-11th grade,833 (10.9),505 (11.8),328 (9.8),411 (12.2),422 (9.9),
+Demographic/SES,  High school/GED,"1,858 (24.3)","1,103 (25.8)",755 (22.5),866 (25.6),992 (23.3),
+Demographic/SES,  Some college/AA,"2,533 (33.1)","1,403 (32.8)","1,130 (33.6)","1,107 (32.8)","1,426 (33.5)",
+Demographic/SES,  College graduate+,"1,901 (24.9)",946 (22.1),955 (28.4),733 (21.7),"1,168 (27.4)",
+Demographic/SES,"Income-to-poverty ratio, med. [IQR]","2.19 [1.17, 4.17]","2.24 [1.21, 4.15]","2.15 [1.11, 4.22]","2.16 [1.18, 4.02]","2.22 [1.16, 4.35]","1,041"
+Anthropometric,"Weight, kg, mean (SD)",83.7 (23.0),87.6 (23.6),79.1 (21.4),86.8 (23.3),81.4 (22.5),63
+Anthropometric,"Height, cm, mean (SD)",167.0 (10.0),167.1 (10.2),167.0 (9.8),167.2 (10.3),166.9 (9.9),71
+Anthropometric,"BMI, kg/m^2, mean (SD)",29.9 (7.5),31.2 (7.5),28.3 (7.1),30.9 (7.3),29.1 (7.5),79
+Anthropometric,"Waist, cm, mean (SD)",100.5 (17.4),105.3 (16.6),95.1 (16.6),104.4 (16.4),97.8 (17.5),244
+Lifestyle,"Vigorous activity, min/wk, med. [IQR]","0 [0, 240]","0 [0, 180]","40 [0, 360]","0 [0, 180]","0 [0, 315]",2
+Lifestyle,"Moderate activity, min/wk, med. [IQR]","180 [0, 690]","150 [0, 600]","225 [10, 840]","150 [0, 600]","180 [0, 720]",1
+Lifestyle,"Sedentary, min/day, med. [IQR]","300 [180, 480]","300 [180, 480]","300 [180, 480]","300 [180, 480]","300 [180, 480]",57
+Lifestyle,"Drinking status, n (%)",,,,,,297
+Lifestyle,  Current,"5,469 (70.8)","2,758 (66.6)","2,711 (75.6)","2,210 (67.6)","3,259 (73.1)",
+Lifestyle,  Former,"1,497 (19.4)","1,006 (24.3)",491 (13.7),740 (22.6),757 (17.0),
+Lifestyle,  Never,761 (9.8),375 (9.1),386 (10.8),321 (9.8),440 (9.9),
+Lifestyle,"Drinks/day, med. [IQR]","1.0 [0.0, 2.0]","1.0 [0.0, 2.0]","1.0 [1.0, 3.0]","1.0 [0.0, 2.0]","1.0 [0.0, 2.0]",307
+Lifestyle,"Smoking status, n (%)",,,,,,4
+Lifestyle,  Current,"1,432 (17.9)",795 (18.5),637 (17.2),651 (19.1),781 (16.9),
+Lifestyle,  Former,"1,818 (22.7)","1,195 (27.7)",623 (16.8),903 (26.5),915 (19.8),
+Lifestyle,  Never,"4,770 (59.5)","2,318 (53.8)","2,452 (66.1)","1,851 (54.4)","2,919 (63.3)",
+Lifestyle,"Recent tobacco use, n (%)","1,844 (23.9)",975 (23.6),869 (24.2),796 (24.3),"1,048 (23.5)",295
+Lifestyle,"Weekday sleep, h, mean (SD)",7.6 (1.7),7.6 (1.7),7.6 (1.6),7.5 (1.7),7.6 (1.7),65
+Lifestyle,"Weekend sleep, h, mean (SD)",8.3 (1.8),8.1 (1.8),8.4 (1.7),8.1 (1.8),8.4 (1.8),66
+Lifestyle,"Trouble sleeping, n (%)","2,290 (28.6)","1,471 (34.1)",819 (22.1),"1,062 (31.2)","1,228 (26.6)",5
+Lifestyle,"Daytime sleepiness, n (%)","2,089 (26.1)","1,131 (26.3)",958 (25.8),854 (25.1),"1,235 (26.8)",13

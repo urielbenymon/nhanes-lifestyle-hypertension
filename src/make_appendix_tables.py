@@ -13,7 +13,10 @@ Source scripts for the CSVs read here:
                                     shap_domain_importance*.csv
     calibration_analysis.py      -> calibration_metrics.csv,
                                     calibration_paired_deltas.csv
-    robustness_refits.py         -> untreated_results.csv
+    robustness_refits.py         -> untreated_results.csv, ablation_results.csv,
+                                    train_seed_*.csv, repeated_splits_*.csv
+    train_pipeline.py --tune     -> tuning_results.csv
+    train_pipeline.py (untuned)  -> outputs/untuned_primary/cv_results.csv
     feature_redundancy.py        -> redundancy_*.csv
 
 USAGE
@@ -316,6 +319,129 @@ def redundancy() -> str:
                  "lccc", header, rows, "4pt")
 
 
+# ---------------------------------------------------------------------------
+# FEATURE-SUBSET ABLATIONS
+# ---------------------------------------------------------------------------
+
+SUBSET_LABELS = [
+    ("age_only", "Age only"),
+    ("age_bmi", "Age + BMI"),
+    ("demographic_ses_only", "Demographic/SES only"),
+    ("anthropometric_only", "Anthropometric only"),
+    ("baseline_full", "Full baseline"),
+    ("lifestyle_only", "Lifestyle only"),
+    ("baseline_plus_lifestyle", "Baseline + lifestyle"),
+]
+
+
+def ablation() -> str:
+    df = pd.read_csv(os.path.join(TABLES_DIR, "ablation_results.csv"))
+    rows = []
+    for key, label in SUBSET_LABELS:
+        sub = df[df.feature_subset == key].set_index("model")
+        n = int(sub.n_predictors.iloc[0])
+        aucs = " & ".join(num(sub.loc[m, "auc"]) for m in MODELS)
+        lo = num(sub.delta_vs_baseline.min(), sign=True)
+        hi = num(sub.delta_vs_baseline.max(), sign=True)
+        rng = "---" if key == "baseline_full" else f"{lo} to {hi}"
+        rows.append(f"{label} & {n} & {aucs} & {rng} \\\\")
+    header = ("\\bfseries Predictors & \\bfseries $k$ & \\bfseries LR & \\bfseries RF & "
+              "\\bfseries GB & \\bfseries BDT & \\bfseries XGB & "
+              "\\bfseries $\\Delta$ vs.\\ full baseline")
+    caption = ("Feature-subset ablations: held-out ROC-AUC on the original test set "
+               "by predictor subset ($k$ = number of source predictors) and model. "
+               "Subsets reuse the frozen hyperparameters of the corresponding arm "
+               "(baseline arm for baseline subsets, lifestyle-augmented arm for "
+               "subsets including lifestyle) and were not retuned, so they may be "
+               "slightly disadvantaged. The last column gives the range across the "
+               "five models of the paired difference from the full baseline.")
+    return table("table*", "tab:ablation", caption, "\\footnotesize",
+                 "lccccccc", header, rows, "4pt")
+
+
+# ---------------------------------------------------------------------------
+# TRAINING-SEED AND REPEATED-SPLIT VARIABILITY
+# ---------------------------------------------------------------------------
+
+def variability() -> str:
+    parts = [("Training seeds, original split", "train_seed_summary.csv"),
+             ("Repeated random 90/10 splits (exploratory)", "repeated_splits_summary.csv")]
+    rows = []
+    for i, (title, fname) in enumerate(parts):
+        df = pd.read_csv(os.path.join(TABLES_DIR, fname)).set_index("model")
+        rows.append(f"\\multicolumn{{7}}{{@{{}}l}}{{\\itshape {title}}} \\\\")
+        for m in MODELS:
+            r = df.loc[m]
+            rows.append(" & ".join([
+                f"\\quad {MODEL_LABELS[m]}",
+                f"{num(r.mean_auc_baseline)} / {num(r.mean_auc_lifestyle)}",
+                num(r.mean_delta, 4, True), num(r.sd_delta, 4),
+                f"{num(r.min_delta, 4, True)} to {num(r.max_delta, 4, True)}",
+                f"{int(r.n_positive)}/{int(r.n_seeds)}",
+                f"{int(r.n_ci_excludes_zero)}/{int(r.n_seeds)}",
+            ]) + " \\\\")
+        if i == 0:
+            rows.append("\\midrule")
+    header = ("\\bfseries Model & \\bfseries Mean AUC (base / life) & "
+              "\\bfseries Mean $\\Delta$ & \\bfseries SD & \\bfseries Range & "
+              "\\bfseries $\\Delta > 0$ & \\bfseries CI excl.\\ 0")
+    caption = ("Variability of the lifestyle-minus-baseline held-out ROC-AUC "
+               "difference over ten seeds. Training seeds keep the original "
+               "development/test split and vary only the model and SMOTE random "
+               "seeds. Repeated splits redraw the stratified 90/10 partition with "
+               "ten seeds (including the original); because hyperparameters were "
+               "tuned on the original development set, part of each new test set "
+               "contributed to tuning, so these results describe split sensitivity "
+               "conditional on that tuning, not independent validation. Each "
+               "comparison has its own paired bootstrap 95\\% CI; the last column "
+               "counts intervals excluding zero.")
+    return table("table*", "tab:variability", caption, "\\footnotesize",
+                 "@{}lcccccc@{}", header, rows, "4pt")
+
+
+# ---------------------------------------------------------------------------
+# HYPERPARAMETER SEARCH LOG SUMMARY
+# ---------------------------------------------------------------------------
+
+UNTUNED_CV = os.path.join(ROOT, "outputs", "untuned_primary", "cv_results.csv")
+
+
+def tuning_summary() -> str:
+    tr = pd.read_csv(os.path.join(TABLES_DIR, "tuning_results.csv"))
+    untuned = pd.read_csv(UNTUNED_CV) if os.path.exists(UNTUNED_CV) else None
+    rows = []
+    for arm, arm_label in [("baseline", "Baseline"),
+                           ("lifestyle_augmented", "Lifestyle-augmented")]:
+        for j, m in enumerate(MODELS):
+            g = tr[(tr.feature_set == arm) & (tr.model == m)]
+            g = g.sort_values("mean_test_roc_auc", ascending=False)
+            best, second = g.mean_test_roc_auc.iloc[0], g.mean_test_roc_auc.iloc[1]
+            within = int((g.mean_test_roc_auc >= best - 0.002).sum())
+            default = "---"
+            if untuned is not None:
+                u = untuned[(untuned.feature_set == arm) & (untuned.model == m)]
+                default = num(u.roc_auc_mean.iloc[0])
+            rows.append(" & ".join([
+                arm_label if j == 0 else "", MODEL_LABELS[m], str(len(g)),
+                default, num(best), num(best - second, 4),
+                f"{within}/{len(g)}", num(g.std_test_roc_auc.iloc[0], 3),
+            ]) + " \\\\")
+        if arm == "baseline":
+            rows.append("\\midrule")
+    header = ("\\bfseries Arm & \\bfseries Model & \\bfseries Cand. & "
+              "\\bfseries Default & \\bfseries Best & \\bfseries Gap to 2nd & "
+              "\\bfseries Within 0.002 & \\bfseries SD of best")
+    caption = ("Hyperparameter search summary, 5-fold development-set CV ROC-AUC. "
+               "``Default'' is library-default CV ROC-AUC before tuning; ``Best'' is "
+               "the selected configuration; ``Gap to 2nd'' is its margin over the "
+               "next-best candidate; ``Within 0.002'' counts candidates within 0.002 "
+               "of the best; ``SD of best'' is the CV fold standard deviation of the "
+               "selected configuration. Logistic Regression used an exhaustive "
+               "five-value grid; tree models used 25 randomized candidates.")
+    return table("table*", "tab:tuning_summary", caption, "\\footnotesize",
+                 "@{}llcccccc@{}", header, rows, "4pt")
+
+
 def main() -> None:
     write("shap_robustness", shap_robustness())
     write("shap_domain", shap_domain())
@@ -323,6 +449,9 @@ def main() -> None:
     write("net_benefit", net_benefit())
     write("untreated", untreated())
     write("redundancy", redundancy())
+    write("ablation", ablation())
+    write("variability", variability())
+    write("tuning_summary", tuning_summary())
 
 
 if __name__ == "__main__":
