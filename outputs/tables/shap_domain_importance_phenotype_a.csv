@@ -1,4 +1,4 @@
-model,domain,mean_abs_shap,share,rank
+model,domain,net_mean_abs_shap,net_share,rank
 logistic_regression,demographic_ses,0.67891759335438,0.5656270809752174,1
 logistic_regression,anthropometric,0.24514262628263467,0.2042358446505424,2
 logistic_regression,alcohol,0.11242233459343917,0.09366249685521714,3
